@@ -1,5 +1,5 @@
 'use strict';
-
+console.log("hello");
 var express     = require('express');
 var bodyParser  = require('body-parser');
 var expect      = require('chai').expect;
@@ -22,9 +22,12 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet.noSniff());
 app.use(helmet.xssFilter());
 
+console.log("sanity check");
+
 //Index page (static HTML)
 app.route('/')
   .get(function (req, res) {
+    console.log("homepage");
     res.sendFile(process.cwd() + '/views/index.html');
   });
 
