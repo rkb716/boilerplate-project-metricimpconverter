@@ -13,7 +13,7 @@ function ConvertHandler() {
   or "invalid number" if the number is not valid
   */
   this.getNum = function(input) {
-    let regexResult = regexUnit(input);
+    let regexResult = this.regexUnit(input);
     let lastIndex;
     if(regexResult != null) {
       lastIndex = regexResult.index;
@@ -47,7 +47,7 @@ function ConvertHandler() {
   'invalid unit' if it is not.
   */
   this.getUnit = function(input) {
-    let regexResult = regexUnit(input);
+    let regexResult = this.regexUnit(input);
     if(regexResult == null) {
       return "invalid unit";
     } else {
@@ -66,9 +66,9 @@ function ConvertHandler() {
       case "gal":
         return "L";
       case "lbs":
-        return "kg":
+        return "kg";
       case "mi":
-        return "km":
+        return "km";
       case "L":
         return "gal";
       case "kg":
@@ -85,9 +85,9 @@ function ConvertHandler() {
       case "gal":
         return "gallons";
       case "lbs":
-        return "pounds":
+        return "pounds";
       case "mi":
-        return "miles":
+        return "miles";
       case "L":
         return "liters";
       case "kg":
@@ -107,9 +107,9 @@ function ConvertHandler() {
       case "gal":
         return initNum * galToL;
       case "lbs":
-        return initNum * lbsToKg:
+        return initNum * lbsToKg;
       case "mi":
-        return initNum * miToKm:
+        return initNum * miToKm;
       case "L":
         return initNum / galToL;
       case "kg":
