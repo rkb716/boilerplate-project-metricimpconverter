@@ -38,6 +38,7 @@ function ConvertHandler() {
     if(isNaN(num)) {
       return "invalid number";
     }
+    num = Number(num.toFixed(5));
     return num;
   };
 
@@ -103,22 +104,31 @@ function ConvertHandler() {
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
+    let num;
     switch(initUnit) {
       case "gal":
-        return initNum * galToL;
+        num = initNum * galToL;
+        break;
       case "lbs":
-        return initNum * lbsToKg;
+        num = initNum * lbsToKg;
+        break;
       case "mi":
-        return initNum * miToKm;
+        num = initNum * miToKm;
+        break;
       case "L":
-        return initNum / galToL;
+        num = initNum / galToL;
+        break;
       case "kg":
-        return initNum / lbsToKg;
+        num = initNum / lbsToKg;
+        break;
       case "km":
-        return initNum / miToKm;
+        num = initNum / miToKm;
+        break;
       default:
         return "invalid unit";
     }
+    num = Number(num.toFixed(5));
+    return num;
   };
 
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
