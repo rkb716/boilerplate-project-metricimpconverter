@@ -112,6 +112,14 @@ function ConvertHandler() {
   };
 
   this.convert = function(initNum, initUnit) {
+    if(initNum == "invalid number") {
+      if(initUnit == "invalid unit") {
+        return "invalid number and unit";
+      }
+      return "invalid number";
+    } else if(initUnit == "invalid unit") {
+      return "invalid unit";
+    }
     const galToL = 3.78541;
     const lbsToKg = 0.453592;
     const miToKm = 1.60934;
