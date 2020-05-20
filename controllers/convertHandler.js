@@ -20,13 +20,22 @@ function ConvertHandler() {
     } else {
       lastIndex = input.length;
     }
+    console.log("last index: " + lastIndex);
+    if(lastIndex < 1) {
+      return 1;
+    }
     let slicedNum = input.slice(0, lastIndex);
+    console.log("slicedNum: " + slicedNum);
     let splitNum = slicedNum.split('/');
+    console.log("splitNum: " + splitNum);
     if(splitNum.length > 2) {
       return "invalid number";
     }
     if (splitNum.length == 2) {
       let num1, num2;
+      if(!this.checkDecimalsValid(splitNum[0]) || !this.checkDecimalsValid(splitNum[1])) {
+        return "invalid number";
+      }
       num1 = parseFloat(splitNum[0]);
       num2 = parseFloat(splitNum[1]);
       if(isNaN(num1) || isNaN(num2)) {
@@ -34,7 +43,11 @@ function ConvertHandler() {
       }
       return num1 / num2;
     }
+    if(!this.checkDecimalsValid(slicedNum)) {
+      return "invalid number";
+    }
     let num = parseFloat(slicedNum);
+    console.log(num);
     if(isNaN(num)) {
       return "invalid number";
     }
@@ -52,6 +65,7 @@ function ConvertHandler() {
     if(regexResult == null) {
       return "invalid unit";
     } else {
+      console.log(regexResult);
       return regexResult[0];
     }
   };
@@ -82,7 +96,7 @@ function ConvertHandler() {
   };
 
   this.spellOutUnit = function(unit) {
-    switch(initUnit) {
+    switch(unit) {
       case "gal":
         return "gallons";
       case "lbs":
@@ -132,13 +146,14 @@ function ConvertHandler() {
   };
 
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    if(initNum == "invalid number") {
-      if(initUnit == "invalid unit") {
+    console.log(initNum + "/" + initUnit);
+    if(returnNum == "invalid number") {
+      if(returnUnit == "invalid unit") {
         return "invalid number and unit";
       }
       return "invalid number";
     }
-    if(initNum == "invalid unit") {
+    if(returnUnit == "invalid unit") {
       return "invalid unit";
     }
     return initNum + " " + initUnit + " converts to " + returnNum + " " + returnUnit;
@@ -147,6 +162,16 @@ function ConvertHandler() {
   this.regexUnit = function(input) {
     let unitRegExp = /[A-z]+$/;
     return input.match(unitRegExp);
+  }
+
+  this.checkDecimalsValid = function(str) {
+    let decimalCount = 0;
+    for(let i = 0; i < str.length; i++) {
+      if(str[i] == '.') {
+        decimalCount++;
+      }
+    }
+    return decimalCount < 2;
   }
 }
 
