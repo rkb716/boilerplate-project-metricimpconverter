@@ -23,8 +23,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(helmet.noSniff());
 app.use(helmet.xssFilter());
 
-console.log("sanity check");
-
 //Index page (static HTML)
 app.route('/')
   .get(function (req, res) {

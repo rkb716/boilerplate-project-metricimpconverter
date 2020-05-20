@@ -20,14 +20,11 @@ function ConvertHandler() {
     } else {
       lastIndex = input.length;
     }
-    console.log("last index: " + lastIndex);
     if(lastIndex < 1) {
       return 1;
     }
     let slicedNum = input.slice(0, lastIndex);
-    console.log("slicedNum: " + slicedNum);
     let splitNum = slicedNum.split('/');
-    console.log("splitNum: " + splitNum);
     if(splitNum.length > 2) {
       return "invalid number";
     }
@@ -47,7 +44,6 @@ function ConvertHandler() {
       return "invalid number";
     }
     let num = parseFloat(slicedNum);
-    console.log(num);
     if(isNaN(num)) {
       return "invalid number";
     }
@@ -65,7 +61,6 @@ function ConvertHandler() {
     if(regexResult == null) {
       return "invalid unit";
     } else {
-      console.log(regexResult);
       return regexResult[0];
     }
   };
@@ -146,7 +141,6 @@ function ConvertHandler() {
   };
 
   this.getString = function(initNum, initUnit, returnNum, returnUnit) {
-    console.log(initNum + "/" + initUnit);
     if(returnNum == "invalid number") {
       if(returnUnit == "invalid unit") {
         return "invalid number and unit";
